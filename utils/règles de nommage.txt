@@ -1,0 +1,27 @@
+Dans la base de données:
+
+	1.Les noms de table:
+		-les tables basiques: on entend par tables basiques, les tables ordinaires telles que user,conseiller,etc.
+			nom_de_table: tout doit être en minuscule, et les espaces entre les mots sont remplacés par des underscore (_).
+
+
+		-les tables de modalités: on entend par modalités toutes les tables avec des données fixes au cours du programme. 
+			Par exemple, les domaines d'économies d'énergie, les types d'utilisateur,...
+			mod_nom_modalite: elles doivent impérativement commencer par 'mod_' pour les différencier. Pour le reste, on applique la 					même règle que les tables basiques.
+			-elles contiennent toute la valeur (-1->NON_RENSEIGNE) et les modalités renseignées commencent à 0
+			-les valeurs sont forcément en majuscules et sans accent
+	2.Les variables
+		-les id en clé primaire: ils s'appeleront tous id. 
+		-les id en clé étrangère : on mettra le nom de table et on précisera que c'est l'id : conseiller_id par exemple
+		-toutes les autres variables: dans une table par exemple user, on n'inclut jamais le nom de la table. On met des underscores 	à la place des espaces
+		-les noms doivent être le plus parlant possible
+	3.IMPORTANT: PAS DE KAMELCASE EN BASE DE DONNEES
+
+Dans le code
+	1.Les noms de classe
+		Elles auront le même nom que les tables dans la bases (pour celles existantes dans la base) et le kamelCase sera respecté.
+	2.Les noms de variables : de même dans la mesure du possible
+	3.Les constantes : en majuscules avec l'espace entre les mots remplacé par eds underscore
+
+
+
