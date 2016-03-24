@@ -1,0 +1,6 @@
+Nous avons décidé d'utiliser une base de données Mysql InnoDB.
+
+Les avantages qui nous ont convaincu d'utiliser une base de type InnoDB concernent la gestion de l'intégrité des données même dans l'éventualité où notre serveur crash.
+Ce type de base nous permet aussi de gérer les contraintes d'intégrité et les clés étrangères. 
+
+Les inconvénients concernent le fait que l'environnement est plus strict pour conserver l'intégrité de nos données. L'administrationest un peu plus complexe et le moteur de stockage lui est un peu plus lent qu'un moteur de stockage MyISAM du fait qu'il demande plus de ressources.
