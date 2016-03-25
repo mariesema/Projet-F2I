@@ -1,0 +1,9 @@
+Implémentation du web service
+
+	Fonctionnalités à implémenter:
+		-prise de rendez-vous
+			renseignement des dispo, du changement de planning
+		-mise en relation directe avec un conseiller
+			récupération du premier conseiller en ligne (et le plus proche si possible)
+		-téléchrgement des fiches conseil
+		-
