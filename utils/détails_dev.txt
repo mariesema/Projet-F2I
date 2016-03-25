@@ -1,0 +1,45 @@
+--------------------------------------
+			WEB SERVICE
+--------------------------------------
+
+--> 2 semaines: date finale : 10 Avril 2016
+--> PHP
+
+1. fiches conseil --> Matt
+2.prise des rendez-vous --> Jo
+3.mise en relation directe vidéo -->Marie
+4.gestion des utilisateurs
+	a.création --> Matt
+	b.mise à jour --> Jo
+	c.suppression --> Marie
+	
+
+	
+--------------------------------------
+			APPLICATION WEB
+--------------------------------------
+--> 5 jours : date finale = 15 Avril 2016
+
+1.création des comptes --> Jo
+2.gestion des conseillers --> Marie
+3.prise des rendez-vous --> Matt
+
+-------------------
+
+4. calculatrice, fiches conseil et présentation des vidéos
+5. mise en relation directe vidéo (si on a le temps prise de rdv en vidéo)
+6. interface admin pour les fiches et les conseillers --> back office
+
+
+--------------------------------------
+			APPLICATION MOBILE
+--------------------------------------
+--> Cordova
+
+1.calculatrice
+2.connexion vidéo
+3.itinéraires
+
+
+
+
