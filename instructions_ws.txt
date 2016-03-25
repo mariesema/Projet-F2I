@@ -6,4 +6,7 @@ Implémentation du web service
 		-mise en relation directe avec un conseiller
 			récupération du premier conseiller en ligne (et le plus proche si possible)
 		-téléchrgement des fiches conseil
-		-
+		-gestion users
+			-création 
+			-mise à jour
+			-suppression
