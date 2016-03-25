@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /gamenote-mvc/Public
+
+# GET DELETE
+# http://localhost/gamenote-mvc/$controller?key=value&key2=value2
+
+# POST PUT PATCH
+# http://localhost/gamenote-mvc/$controller		body:key=value&key2=value2
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?ressource=$1&%{QUERY_STRING}
