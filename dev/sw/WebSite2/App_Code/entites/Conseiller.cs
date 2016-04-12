@@ -10,7 +10,26 @@ using System.Web;
 public class Conseiller: User 
 {
 
-    public Conseiller:base(){
+    private List<Disponibilite> disponibilites;
+
+    private List<Disponibilite> Disponibilites
+    {
+        get { return disponibilites; }
+        set { disponibilites = value; }
+    }
+
+    private Prefecture prefecture;
+
+    public Prefecture Prefecture
+    {
+        get { return prefecture; }
+        set { prefecture = value; }
+    }
+
+
+
+
+    public Conseiller():base(){
     
     }
 }

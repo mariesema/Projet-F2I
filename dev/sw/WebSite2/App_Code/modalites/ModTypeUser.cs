@@ -6,7 +6,7 @@ using System.Web;
 /// <summary>
 /// Description résumée de Class1
 /// </summary>
-public class ModTypeUser : Modalite
+public class ModTypeExoneration : Modalite
 {
 
     public const long ADMIN = 999;
@@ -15,7 +15,7 @@ public class ModTypeUser : Modalite
 
 
 
-	public ModTypeUser(): base(){}
+	public ModTypeExoneration(): base(){}
 
     public Boolean isAdmin()
     {

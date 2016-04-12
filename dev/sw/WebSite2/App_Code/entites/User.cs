@@ -73,9 +73,9 @@ public class User
         get { return dateCreation; }
         set { dateCreation = value; }
     }
-    private ModTypeUser typeUser;
+    private ModTypeExoneration typeUser;
 
-    public ModTypeUser TypeUser
+    public ModTypeExoneration TypeUser
     {
         get { return typeUser; }
         set { typeUser = value; }
