@@ -7,29 +7,35 @@ using System.Web;
 /// Description résumée de User
 /// classe renseignant tous les attributs des utilisateurs (les clients ainsi que les conseillers)
 /// </summary>
-public class Conseiller: User 
+
+namespace stopgaspi.sw.WebSite2.App_Code.entites
 {
-
-    private List<Disponibilite> disponibilites;
-
-    private List<Disponibilite> Disponibilites
+    public class Conseiller : User
     {
-        get { return disponibilites; }
-        set { disponibilites = value; }
-    }
 
-    private Prefecture prefecture;
+        private List<Disponibilite> disponibilites;
 
-    public Prefecture Prefecture
-    {
-        get { return prefecture; }
-        set { prefecture = value; }
-    }
+        private List<Disponibilite> Disponibilites
+        {
+            get { return disponibilites; }
+            set { disponibilites = value; }
+        }
+
+        private Prefecture prefecture;
+
+        public Prefecture Prefecture
+        {
+            get { return prefecture; }
+            set { prefecture = value; }
+        }
 
 
 
 
-    public Conseiller():base(){
-    
+        public Conseiller()
+            : base()
+        {
+
+        }
     }
 }

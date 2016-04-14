@@ -70,8 +70,8 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
 			get { return datePublication;}
 			set {datePublication = value;}
 		}
-		
-		private DateTime dateDerniereModification
+
+        private DateTime dateDerniereModification;
 		public DateTime DateDerniereModification
 		{
 			get { return dateDerniereModification;}

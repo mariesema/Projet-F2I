@@ -47,9 +47,16 @@
     <None Include="Web.Debug.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\entites\Article.cs" />
+    <Compile Include="App_Code\entites\Consommation.cs" />
     <Compile Include="App_Code\entites\Conseiller.cs" />
+    <Compile Include="App_Code\entites\Disponibilite.cs" />
+    <Compile Include="App_Code\entites\FicheConseil.cs" />
+    <Compile Include="App_Code\entites\Prefecture.cs" />
+    <Compile Include="App_Code\entites\RendezVous.cs" />
     <Compile Include="App_Code\entites\User.cs" />
     <Compile Include="App_Code\entites\Ville.cs" />
+    <Compile Include="App_Code\entites\Exoneration.cs" />
     <Compile Include="App_Code\modalites\Modalite.cs" />
     <Compile Include="App_Code\modalites\ModTypeDomaine.cs" />
     <Compile Include="App_Code\modalites\ModTypeExoneration.cs" />
