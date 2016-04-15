@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbRestoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbRestoEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Critiques" EntityType="dbRestoModel.Critique" />
+    <EntitySet Name="Restos" EntityType="dbRestoModel.Resto" />
+    <AssociationSet Name="FK_Critiques_ToResto" Association="dbRestoModel.FK_Critiques_ToResto">
+      <End Role="Restos" EntitySet="Restos" />
+      <End Role="Critiques" EntitySet="Critiques" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Critique">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Texte" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Note" Type="Int16" />
+    <Property Name="Pseudo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="RestoId" Type="Int32" />
+    <NavigationProperty Name="Resto" Relationship="dbRestoModel.FK_Critiques_ToResto" FromRole="Critiques" ToRole="Restos" />
+  </EntityType>
+  <EntityType Name="Resto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CodePostal" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="Ville" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Photo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DateCreation" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Critiques" Relationship="dbRestoModel.FK_Critiques_ToResto" FromRole="Restos" ToRole="Critiques" />
+  </EntityType>
+  <Association Name="FK_Critiques_ToResto">
+    <End Role="Restos" Type="dbRestoModel.Resto" Multiplicity="0..1" />
+    <End Role="Critiques" Type="dbRestoModel.Critique" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Critiques">
+        <PropertyRef Name="RestoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Adress">
+    <Property Type="String" Name="Rue" Nullable="false" />
+    <Property Type="String" Name="Vilkle" Nullable="false" />
+    <Property Type="String" Name="CodePostal" Nullable="false" />
+  </ComplexType>
+</Schema>

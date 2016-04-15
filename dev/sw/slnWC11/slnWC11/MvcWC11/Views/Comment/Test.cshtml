@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MvcWC11.Models.Comment>
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Major = Model.First();
+    string MeilleurComment = "Major : " + Major.Texte + " Note : " + Major.Note;
+    
+}
+
+<h2>Major : @Major.Texte</h2>
+<h3>@MeilleurComment</h3>
+
+
+<h2>Liste des Commentaires </h2> 
+
+@if(@Model.Count() > 0)
+{
+    <h3>Nombre de News :  @Model.Count()</h3>
+}
+else
+{
+    <h3>Pas de News!!!</h3>
+    string ch = "Pas de News";
+    @ch
+}
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "RechercheById", 
+                            new { id = item.Id })</td>
+            <td>@item.Texte </td>
+            <td>@Html.TextBoxFor(modelItem => item.Texte)</td>
+            <td>@item.Note </td>
+            <td>@item.Note / 10 </td>
+            <td>@(item.Id / 10) </td>
+            <td>@(item.Id / 10.0) </td>
+            <td>@((float)item.Id / 10.0) </td>
+            <td>@(item.Id / 10f) </td>
+            <td>Note@item.Note</td>
+             <td>Note@(item.Note)</td>
+            <td>@@Model</td>
+            <td>item @item.Id</td>
+            <td>@{
+                    @:item @item.Id
+                }</td>
+            <td>
+                <text>item @item.Id</text>
+            </td>
+        </tr>
+    }
+
+</table>

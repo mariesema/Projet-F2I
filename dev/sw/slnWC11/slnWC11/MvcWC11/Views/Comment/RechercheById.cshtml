@@ -1,0 +1,30 @@
+﻿@model MvcWC11.Models.Comment
+
+@{
+    ViewBag.Title = "RechercheById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RechercheById</h2>
+
+<fieldset>
+    <legend>Comment</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Texte)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Texte)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Note)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Note)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

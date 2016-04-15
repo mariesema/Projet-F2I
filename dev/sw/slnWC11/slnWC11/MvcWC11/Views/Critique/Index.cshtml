@@ -1,0 +1,17 @@
+﻿@model MvcWC11.Resto
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<h2> Critiques sur le Resto : @Model.Nom</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",
+    "Critique", new  { RestoId = @Model.Id}, null)
+</p>
+
+@Html.Partial("_Critiques", Model.Critiques)
