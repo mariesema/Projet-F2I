@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 29 Mars 2016 à 12:42
+-- Généré le: Ven 15 Avril 2016 à 19:14
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -42,6 +42,12 @@ CREATE TABLE IF NOT EXISTS `article` (
   KEY `fk_artcile_categorie` (`categorie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- RELATIONS POUR LA TABLE `article`:
+--   `categorie`
+--       `mod_type_domaine` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +63,16 @@ CREATE TABLE IF NOT EXISTS `conseiller` (
   KEY `fk_conseiller_prefecture` (`prefecture_id`),
   KEY `fk_conseiller_disponibilite` (`disponibilites`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- RELATIONS POUR LA TABLE `conseiller`:
+--   `disponibilites`
+--       `disponibilite` -> `id`
+--   `id`
+--       `utilisateur` -> `id`
+--   `prefecture_id`
+--       `prefecture` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -85,6 +101,14 @@ CREATE TABLE IF NOT EXISTS `conso_user` (
   PRIMARY KEY (`consommation_id`,`utilisateur_id`),
   KEY `fk_user_conso_pk` (`utilisateur_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONS POUR LA TABLE `conso_user`:
+--   `consommation_id`
+--       `consommation` -> `id`
+--   `utilisateur_id`
+--       `utilisateur` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -116,6 +140,12 @@ CREATE TABLE IF NOT EXISTS `exoneration` (
   KEY `fk_type_exoneration` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- RELATIONS POUR LA TABLE `exoneration`:
+--   `type`
+--       `mod_type_exoneration` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -128,6 +158,14 @@ CREATE TABLE IF NOT EXISTS `exoneration_user` (
   PRIMARY KEY (`utilisateur_id`,`exoneration_id`),
   KEY `fk_exoneration_user` (`exoneration_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONS POUR LA TABLE `exoneration_user`:
+--   `exoneration_id`
+--       `exoneration` -> `id`
+--   `utilisateur_id`
+--       `utilisateur` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -144,6 +182,12 @@ CREATE TABLE IF NOT EXISTS `fiche_conseil` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_domaine_fiche` (`domaine`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- RELATIONS POUR LA TABLE `fiche_conseil`:
+--   `domaine`
+--       `mod_type_domaine` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -205,6 +249,12 @@ CREATE TABLE IF NOT EXISTS `prefecture` (
   KEY `fk_ville_prefecture` (`ville`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- RELATIONS POUR LA TABLE `prefecture`:
+--   `ville`
+--       `ville` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -225,6 +275,18 @@ CREATE TABLE IF NOT EXISTS `rendez_vous` (
   KEY `fk_domaine_rdv` (`domaine`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- RELATIONS POUR LA TABLE `rendez_vous`:
+--   `conseiller_id`
+--       `conseiller` -> `id`
+--   `domaine`
+--       `mod_type_domaine` -> `id`
+--   `utilisateur_id`
+--       `utilisateur` -> `id`
+--   `ville`
+--       `ville` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -235,6 +297,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) DEFAULT NULL,
   `prenom` varchar(255) DEFAULT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `adresse` varchar(255) DEFAULT NULL,
   `ville` bigint(20) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
@@ -247,6 +311,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   KEY `fk_type_user_utilisateur` (`type_user`),
   KEY `fk_ville_utilisateur` (`ville`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- RELATIONS POUR LA TABLE `utilisateur`:
+--   `type_user`
+--       `mod_type_user` -> `id`
+--   `ville`
+--       `ville` -> `id`
+--
 
 -- --------------------------------------------------------
 

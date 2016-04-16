@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
+using System.Data.Entity;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 /// <summary>
 /// Description résumée de User
@@ -10,9 +15,14 @@ using System.Web;
 
 namespace stopgaspi.sw.WebSite2.App_Code.entites
 {
+
+
+
+    [Table("utilisateur")]
     public class User
     {
-
+        [Key]//permet de définir que c'est la clé primaire de la classe
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)] //permet de définir la séquence de la clé primaire
         private long id;
 
         public long Id
@@ -20,6 +30,29 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
             get { return id; }
             set { id = value; }
         }
+
+        [Required]
+        [Display(Name = "Login")]
+        private string login;
+
+        public string Login
+        {
+            get { return login; }
+            set { login = value; }
+        }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Mot de passe")]
+        private string password;
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+
         private string nom;
 
         public string Nom
@@ -89,5 +122,4 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
         {
         }
     }
-
 }

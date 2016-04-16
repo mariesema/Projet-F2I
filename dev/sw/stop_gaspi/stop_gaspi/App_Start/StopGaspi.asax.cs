@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration.Install;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace stop_gaspi
+namespace stop_gaspi.App_Start
 {
-    // Remarque : pour obtenir des instructions sur l'activation du mode classique IIS6 ou IIS7, 
-    // visitez http://go.microsoft.com/?LinkId=9394801
-
-    public class MvcApplication : System.Web.HttpApplication
+   
+    [RunInstaller(true)]
+    public partial class StopGaspi : System.Configuration.Install.Installer
     {
         protected void Application_Start()
         {
@@ -23,6 +25,10 @@ namespace stop_gaspi
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+        }
+        public StopGaspi()
+        {
+            InitializeComponent();
         }
     }
 }
