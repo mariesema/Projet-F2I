@@ -165,6 +165,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\entites\Article.cs" />
+    <Compile Include="Models\entites\Conseiller.cs" />
+    <Compile Include="Models\entites\Consommation.cs" />
+    <Compile Include="Models\entites\Disponibilite.cs" />
+    <Compile Include="Models\entites\Exoneration.cs" />
+    <Compile Include="Models\entites\FicheConseil.cs" />
+    <Compile Include="Models\entites\Prefecture.cs" />
+    <Compile Include="Models\entites\RendezVous.cs" />
+    <Compile Include="Models\entites\User.cs" />
+    <Compile Include="Models\entites\Ville.cs" />
+    <Compile Include="Models\modalites\Modalite.cs" />
+    <Compile Include="Models\modalites\ModTypeDomaine.cs" />
+    <Compile Include="Models\modalites\ModTypeExoneration.cs" />
+    <Compile Include="Models\modalites\ModTypeUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,7 +296,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
