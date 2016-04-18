@@ -19,7 +19,7 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
 
 
     [Table("utilisateur")]
-    public class User
+    public class User:DbContext
     {
         [Key]//permet de définir que c'est la clé primaire de la classe
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)] //permet de définir la séquence de la clé primaire
