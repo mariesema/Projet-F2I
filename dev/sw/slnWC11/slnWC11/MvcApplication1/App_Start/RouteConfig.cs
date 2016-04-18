@@ -25,6 +25,19 @@ namespace MvcApplication1
                 "User/{action}",
                 new { controller = "User", action = "Inscription" }
             );
+
+            routes.MapRoute(
+                "Connexion",
+                "User/{action}",
+                new { controller = "User", action = "Connexion" }
+            );
+
+            routes.MapRoute(
+                "Authentification",
+                "User/{action}",
+                new { controller = "User", action = "Authentification" }
+            );
+           
         }
     }
 }

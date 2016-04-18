@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -299,6 +300,8 @@
     <Content Include="Views\User\inscription.cshtml" />
     <Content Include="Views\FicheConseil\index.cshtml" />
     <Content Include="Views\FicheConseil\indexList.cshtml" />
+    <Content Include="Views\User\Connexion.cshtml" />
+    <Content Include="Views\User\Authentification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
