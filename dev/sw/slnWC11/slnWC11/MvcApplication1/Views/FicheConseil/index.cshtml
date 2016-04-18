@@ -1,0 +1,26 @@
+﻿@model stopgaspi.sw.WebSite2.App_Code.entites.FicheConseil
+
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>index</h2>
+
+<fieldset>
+    <legend>FicheConseil</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Contenu)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contenu)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
