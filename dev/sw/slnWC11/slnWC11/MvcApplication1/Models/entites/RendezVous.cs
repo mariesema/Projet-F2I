@@ -5,7 +5,7 @@ using System.Text;
 
 namespace stopgaspi.sw.WebSite2.App_Code.entites
 {
-    class RendezVous
+    public class RendezVous
     {
         private Conseiller conseiller;
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace stopgaspi.sw.WebSite2.App_Code.entites
 {
-    class FicheConseil
+    public class FicheConseil
     {
         private int id;
         public int Id

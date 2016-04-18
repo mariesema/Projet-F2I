@@ -154,6 +154,5 @@ C:\Users\Marie\Desktop\Projet F2I\dev\sw\slnWC11\slnWC11\MvcApplication1\bin\ko\
 C:\Users\Marie\Desktop\Projet F2I\dev\sw\slnWC11\slnWC11\MvcApplication1\bin\ru\System.Spatial.resources.dll
 C:\Users\Marie\Desktop\Projet F2I\dev\sw\slnWC11\slnWC11\MvcApplication1\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Marie\Desktop\Projet F2I\dev\sw\slnWC11\slnWC11\MvcApplication1\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Marie\Desktop\Projet F2I\dev\sw\slnWC11\slnWC11\MvcApplication1\obj\Debug\MvcApplication1.csprojResolveAssemblyReference.cache
 C:\Users\Marie\Desktop\Projet F2I\dev\sw\slnWC11\slnWC11\MvcApplication1\obj\Debug\MvcApplication1.dll
 C:\Users\Marie\Desktop\Projet F2I\dev\sw\slnWC11\slnWC11\MvcApplication1\obj\Debug\MvcApplication1.pdb

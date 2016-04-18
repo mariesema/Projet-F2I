@@ -5,7 +5,7 @@ using System.Text;
 
 namespace stopgaspi.sw.WebSite2.App_Code.entites
 {
-    class Exoneration
+    public class Exoneration
     {	
 	
         private long id;

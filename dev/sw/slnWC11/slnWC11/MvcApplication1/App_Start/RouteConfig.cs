@@ -16,7 +16,14 @@ namespace MvcApplication1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "User", action = "Inscription", id = UrlParameter.Optional }
+            );
+
+      
+            routes.MapRoute(
+                "Inscription",
+                "User/{action}",
+                new { controller = "User", action = "Inscription" }
             );
         }
     }
