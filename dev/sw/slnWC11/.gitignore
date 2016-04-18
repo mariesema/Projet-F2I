@@ -1,3 +1,4 @@
 #Ignore big folders
 slnWC11/packages/*
-bin/
+bin/*
+debug/*

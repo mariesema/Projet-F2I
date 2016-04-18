@@ -1,0 +1,4 @@
+#Ignore big folders
+dev/sw/slnWC11/slnWC11/packages/*
+dev/sw/slnWC11/slnWC11/MvcApplication1/bin/*
+dev/sw/slnWC11/slnWC11/MvcApplication1/obj/Debug/*
