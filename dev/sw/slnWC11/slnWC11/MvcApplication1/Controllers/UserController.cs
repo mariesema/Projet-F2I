@@ -24,13 +24,26 @@ namespace MvcApplication1.Controllers
             return View();
         }
 
+
         // GET: /User/Inscription
         public ActionResult Inscription()
         {
             return View();
         }
 
-        //
+        // GET: /User/Connexion
+        public ActionResult Connexion()
+        {
+            return View();
+        }
+
+        // GET: /User/Authentification
+        public ActionResult Authentification()
+        {
+            return View();
+        }
+
+
         // GET: /User/Create
 
         public ActionResult Create()
