@@ -169,6 +169,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\dao\GenericDAO.cs" />
+    <Compile Include="Models\dao\UserDAO.cs" />
     <Compile Include="Models\entites\Article.cs" />
     <Compile Include="Models\entites\Conseiller.cs" />
     <Compile Include="Models\entites\Consommation.cs" />
@@ -307,7 +309,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\dao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

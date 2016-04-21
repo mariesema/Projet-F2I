@@ -7,8 +7,7 @@ using System.Web;
 /// Description résumée de Ville
 /// </summary>
 /// 
-namespace stopgaspi.sw.WebSite2.App_Code.entites
-{
+
     public class Ville
     {
         private long id;
@@ -48,4 +47,3 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
 
         }
     }
-}

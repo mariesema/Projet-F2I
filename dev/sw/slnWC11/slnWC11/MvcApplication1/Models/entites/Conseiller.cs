@@ -8,8 +8,6 @@ using System.Web;
 /// classe renseignant tous les attributs des utilisateurs (les clients ainsi que les conseillers)
 /// </summary>
 
-namespace stopgaspi.sw.WebSite2.App_Code.entites
-{
     public class Conseiller : User
     {
 
@@ -38,4 +36,3 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
 
         }
     }
-}

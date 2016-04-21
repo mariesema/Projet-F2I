@@ -7,8 +7,7 @@ using System.Web;
 /// Description résumée de Class1
 /// </summary>
 /// 
-namespace stopgaspi.sw.WebSite2.App_Code.entites
-{
+
     public class ModTypeExoneration : Modalite
     {
 
@@ -16,4 +15,3 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
 
 
     }
-}

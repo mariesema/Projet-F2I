@@ -7,8 +7,7 @@ using System.Web;
 /// Description résumée de Modalite
 /// </summary>
 /// 
-namespace stopgaspi.sw.WebSite2.App_Code.entites
-{
+
     public class Modalite
     {
         private long id;
@@ -47,4 +46,3 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
 
 
     }
-}

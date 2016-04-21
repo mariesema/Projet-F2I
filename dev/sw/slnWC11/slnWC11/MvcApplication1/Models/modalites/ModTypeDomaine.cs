@@ -7,8 +7,7 @@ using System.Web;
 /// Description résumée de Class1
 /// </summary>
 /// 
-namespace stopgaspi.sw.WebSite2.App_Code.entites
-{
+
     public class ModTypeDomaine : Modalite
     {
 
@@ -46,4 +45,3 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
             return ECONOMIE_ELECTRIQUE.Equals(base.Id);
         }
     }
-}

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace stopgaspi.sw.WebSite2.App_Code.entites
-{
+
     public class Prefecture
     {
         private long id;
@@ -40,4 +39,3 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
 
         }
     }
-}

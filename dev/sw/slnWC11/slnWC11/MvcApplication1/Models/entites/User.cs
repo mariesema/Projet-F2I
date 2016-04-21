@@ -13,8 +13,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 /// classe renseignant tous les attributs des utilisateurs (les clients ainsi que les conseillers)
 /// </summary>
 
-namespace stopgaspi.sw.WebSite2.App_Code.entites
-{
 
 
 
@@ -122,4 +120,3 @@ namespace stopgaspi.sw.WebSite2.App_Code.entites
         {
         }
     }
-}
