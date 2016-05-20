@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z]+)$ server.php?service=$1&method=get_all
+RewriteRule ^([a-zA-Z]+)/([0-9]+)$ server.php?service=$1&method=get_from_primary&id=$2
