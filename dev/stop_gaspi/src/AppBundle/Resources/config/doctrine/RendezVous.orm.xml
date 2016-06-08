@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\RendezVous" table="rendez_vous">
+    <indexes>
+      <index name="fk_ville_rdv" columns="ville"/>
+      <index name="fk_utilisateur_rdv" columns="utilisateur_id"/>
+      <index name="fk_domaine_rdv" columns="domaine"/>
+      <index name="IDX_65E8AA0A1AC39A0D" columns="conseiller_id"/>
+    </indexes>
+    <id name="conseiller" association-key="true"/>
+    <id name="utilisateur" association-key="true"/>
+    <field name="date" type="datetime" column="date" nullable="true"/>
+    <field name="heure" type="datetime" column="heure" nullable="true"/>
+    <field name="adresse" type="string" column="adresse" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <one-to-one field="utilisateur" target-entity="Utilisateur" fetch="LAZY">
+      <join-columns>
+        <join-column name="utilisateur_id" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="conseiller" target-entity="Conseiller" fetch="LAZY">
+      <join-columns>
+        <join-column name="conseiller_id" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="ville" target-entity="Ville" fetch="LAZY">
+      <join-columns>
+        <join-column name="ville" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="domaine" target-entity="ModTypeDomaine" fetch="LAZY">
+      <join-columns>
+        <join-column name="domaine" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

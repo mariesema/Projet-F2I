@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Utilisateur" table="utilisateur">
+    <indexes>
+      <index name="fk_type_user_utilisateur" columns="type_user"/>
+      <index name="fk_ville_utilisateur" columns="ville"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="id_UNIQUE" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="prenom" type="string" column="prenom" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="login" type="string" column="login" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="password" type="string" column="password" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="adresse" type="string" column="adresse" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="mail" type="string" column="mail" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="telephone" type="string" column="telephone" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="applicationMobile" type="boolean" column="application_mobile" nullable="true"/>
+    <field name="dateCreation" type="datetime" column="date_creation" nullable="true"/>
+    <many-to-one field="typeUser" target-entity="ModTypeUser" fetch="LAZY">
+      <join-columns>
+        <join-column name="type_user" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ville" target-entity="Ville" fetch="LAZY">
+      <join-columns>
+        <join-column name="ville" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="exoneration" target-entity="Exoneration" inversed-by="utilisateur" fetch="LAZY">
+      <join-table name="exoneration_user">
+        <join-columns>
+          <join-column name="utilisateur_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="exoneration_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="consommation" target-entity="Consommation" mapped-by="utilisateur" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

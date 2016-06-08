@@ -1,0 +1,139 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Utilisateur
+ *
+ * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_type_user_utilisateur", columns={"type_user"}), @ORM\Index(name="fk_ville_utilisateur", columns={"ville"})})
+ * @ORM\Entity
+ */
+class Utilisateur
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=255, nullable=false)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255, nullable=true)
+     */
+    private $mail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="application_mobile", type="boolean", nullable=true)
+     */
+    private $applicationMobile;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\ModTypeUser
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ModTypeUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type_user", referencedColumnName="id")
+     * })
+     */
+    private $typeUser;
+
+    /**
+     * @var \AppBundle\Entity\Ville
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ville")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ville", referencedColumnName="id")
+     * })
+     */
+    private $ville;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Exoneration", inversedBy="utilisateur")
+     * @ORM\JoinTable(name="exoneration_user",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="exoneration_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $exoneration;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Consommation", mappedBy="utilisateur")
+     */
+    private $consommation;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->exoneration = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->consommation = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

@@ -1,0 +1,82 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RendezVous
+ *
+ * @ORM\Table(name="rendez_vous", indexes={@ORM\Index(name="fk_ville_rdv", columns={"ville"}), @ORM\Index(name="fk_utilisateur_rdv", columns={"utilisateur_id"}), @ORM\Index(name="fk_domaine_rdv", columns={"domaine"}), @ORM\Index(name="IDX_65E8AA0A1AC39A0D", columns={"conseiller_id"})})
+ * @ORM\Entity
+ */
+class RendezVous
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure", type="datetime", nullable=true)
+     */
+    private $heure;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var \AppBundle\Entity\Utilisateur
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * })
+     */
+    private $utilisateur;
+
+    /**
+     * @var \AppBundle\Entity\Conseiller
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Conseiller")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="conseiller_id", referencedColumnName="id")
+     * })
+     */
+    private $conseiller;
+
+    /**
+     * @var \AppBundle\Entity\Ville
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ville")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ville", referencedColumnName="id")
+     * })
+     */
+    private $ville;
+
+    /**
+     * @var \AppBundle\Entity\ModTypeDomaine
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ModTypeDomaine")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="domaine", referencedColumnName="id")
+     * })
+     */
+    private $domaine;
+
+
+}
+

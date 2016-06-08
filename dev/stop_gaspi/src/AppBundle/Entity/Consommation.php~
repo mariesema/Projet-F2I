@@ -1,0 +1,69 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Consommation
+ *
+ * @ORM\Table(name="consommation", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
+ * @ORM\Entity
+ */
+class Consommation
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quantite", type="decimal", precision=10, scale=0, nullable=true)
+     */
+    private $quantite;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="annee", type="datetime", nullable=true)
+     */
+    private $annee;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duree", type="bigint", nullable=true)
+     */
+    private $duree;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Utilisateur", inversedBy="consommation")
+     * @ORM\JoinTable(name="conso_user",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="consommation_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $utilisateur;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->utilisateur = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+
