@@ -1,0 +1,5 @@
+/************************************* OPERATION A FAIRE SUR LA BASE DE DONNEES *******************************************************/
+
+
+09/06/2016
+ALTER TABLE `utilisateur` ADD `is_active` BOOLEAN NOT NULL AFTER `type_user`;

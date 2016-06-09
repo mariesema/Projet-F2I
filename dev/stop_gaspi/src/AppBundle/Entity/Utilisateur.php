@@ -3,18 +3,22 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Utilisateur
  *
  * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_type_user_utilisateur", columns={"type_user"}), @ORM\Index(name="fk_ville_utilisateur", columns={"ville"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository.php")
+ * @UniqueEntity(fields="mail", message="Email already taken")
+ * @UniqueEntity(fields="login", message="Username already taken")
  */
-class Utilisateur
+class Utilisateur implements UserInterface, \Serializable
 {
     /**
      * @var string
-     *
      * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
@@ -28,10 +32,16 @@ class Utilisateur
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="login", type="string", length=255, nullable=false)
+     * @ORM\Column(name="login", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $login;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
      * @var string
@@ -42,42 +52,38 @@ class Utilisateur
 
     /**
      * @var string
-     *
      * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255, nullable=true)
+     * @ORM\Column(name="mail", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $mail;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
      */
     private $telephone;
 
     /**
      * @var boolean
-     *
      * @ORM\Column(name="application_mobile", type="boolean", nullable=true)
      */
     private $applicationMobile;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="date_creation", type="datetime", nullable=true)
      */
     private $dateCreation;
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -86,7 +92,6 @@ class Utilisateur
 
     /**
      * @var \AppBundle\Entity\ModTypeUser
-     *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ModTypeUser")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="type_user", referencedColumnName="id")
@@ -96,7 +101,6 @@ class Utilisateur
 
     /**
      * @var \AppBundle\Entity\Ville
-     *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ville")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ville", referencedColumnName="id")
@@ -106,7 +110,6 @@ class Utilisateur
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Exoneration", inversedBy="utilisateur")
      * @ORM\JoinTable(name="exoneration_user",
      *   joinColumns={
@@ -121,16 +124,21 @@ class Utilisateur
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Consommation", mappedBy="utilisateur")
      */
     private $consommation;
+
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->isActive = true;
         $this->exoneration = new \Doctrine\Common\Collections\ArrayCollection();
         $this->consommation = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -185,13 +193,13 @@ class Utilisateur
     }
 
     /**
-     * Set login
+     * Set username
      *
-     * @param string $login
+     * @param string $username
      *
      * @return Utilisateur
      */
-    public function setLogin($login)
+    public function setUsername($login)
     {
         $this->login = $login;
 
@@ -199,13 +207,35 @@ class Utilisateur
     }
 
     /**
-     * Get login
+     * Get username
      *
      * @return string
      */
-    public function getLogin()
+    public function getUsername()
     {
         return $this->login;
+    }
+
+    /**
+     * Get PlainPassword
+     *
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set PlainPassword
+     *
+     * @param string $password
+     *
+     * @return Utilisateur
+     */
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 
     /**
@@ -257,13 +287,13 @@ class Utilisateur
     }
 
     /**
-     * Set mail
+     * Set email
      *
      * @param string $mail
      *
      * @return Utilisateur
      */
-    public function setMail($mail)
+    public function setEmail($mail)
     {
         $this->mail = $mail;
 
@@ -271,11 +301,11 @@ class Utilisateur
     }
 
     /**
-     * Get mail
+     * Get email
      *
      * @return string
      */
-    public function getMail()
+    public function getEmail()
     {
         return $this->mail;
     }
@@ -476,5 +506,46 @@ class Utilisateur
     public function getConsommation()
     {
         return $this->consommation;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->login,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->login,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 }

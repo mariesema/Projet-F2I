@@ -1,10 +1,11 @@
 <?php
 
+// src/AppBundle/Controller/UtilisateurController.php
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Form\UtilisateurType;
@@ -125,4 +126,5 @@ class UtilisateurController extends Controller
             ->getForm()
         ;
     }
+
 }
