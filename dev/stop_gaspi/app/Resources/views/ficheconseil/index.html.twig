@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FicheConseil list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Contenu</th>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ficheConseil in ficheConseils %}
+            <tr>
+                <td><a href="{{ path('fiche_show', { 'id': ficheConseil.id }) }}">{{ ficheConseil.contenu }}</a></td>
+                <td>{{ ficheConseil.description }}</td>
+                <td>{{ ficheConseil.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fiche_show', { 'id': ficheConseil.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fiche_edit', { 'id': ficheConseil.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fiche_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

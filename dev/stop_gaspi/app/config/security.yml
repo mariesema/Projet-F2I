@@ -32,6 +32,6 @@ security:
             http_basic: ~
             provider: our_db_provider
             form_login:
-              provider: our_db_provider
-              login_path: login
-              check_path: login
+                provider: our_db_provider
+                login_path: login
+                check_path: login

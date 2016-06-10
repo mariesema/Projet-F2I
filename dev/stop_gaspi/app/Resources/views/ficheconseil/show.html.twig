@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FicheConseil</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ ficheConseil.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ficheConseil.description }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ ficheConseil.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fiche_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fiche_edit', { 'id': ficheConseil.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
