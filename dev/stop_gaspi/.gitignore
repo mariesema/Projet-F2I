@@ -2,3 +2,4 @@ var/cache/
 var/logs/
 var/sessions/
 .idea/
+vendor/tecnickcom/tcpdf/examples

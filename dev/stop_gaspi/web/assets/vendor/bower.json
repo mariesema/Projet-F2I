@@ -1,0 +1,20 @@
+{
+  "name": "stop_gaspi",
+  "homepage": "https://github.com/mariesema/Projet-F2I",
+  "authors": [
+    "Matthieu Duret <matthieu.dbng@gmail.com>"
+  ],
+  "description": "desc",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

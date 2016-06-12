@@ -15,6 +15,29 @@ use AppBundle\Form\FicheConseilType;
  */
 class FicheConseilController extends Controller
 {
+
+    public function returnPDFResponseFromHTML($html){
+        //set_time_limit(30); uncomment this line according to your needs
+        // If you are not in a controller, retrieve of some way the service container and then retrieve it
+        //$pdf = $this->container->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        //if you are in a controlller use :
+        $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetAuthor('Stop Gaspi');
+        $pdf->SetTitle(('Fiche conseil'));
+        $pdf->SetSubject('Fiche conseil - Stop Gaspi !');
+        $pdf->setFontSubsetting(true);
+        $pdf->SetFont('helvetica', '', 11, '', true);
+        $pdf->SetMargins(20,20,40, true);
+        $pdf->AddPage();
+        $img = file_get_contents($this->get('kernel')->getRootDir().'\..\images\stop_gaspi_pdf.png');
+        $pdf->Image('@' . $img);
+
+        $filename = 'stopgaspi_pdf_ficheconseil';
+
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+        $pdf->Output($filename.".pdf",'I'); // This will output the PDF as a response directly
+    }
+
     /**
      * Lists all FicheConseil entities.
      * @Route("/fiche/index", name="fiche_index")
@@ -126,4 +149,26 @@ class FicheConseilController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Deletes a FicheConseil entity.
+     * @Route("/fiche/download/{id}", name="fiche_download")
+     */
+    public function downloadAction(Request $request, FicheConseil $ficheConseil, $id)
+    {
+        // You can send the html as you want
+        //$html = '<h1>Plain HTML</h1>';
+        // but in this case we will render a symfony view !
+        // We are in a controller and we can use renderView function which retrieves the html from a view
+        // then we send that html to the user.
+        $html = $this->renderView(
+            'ficheconseil/pdf.html.twig', array(
+                'fiche_contenu' => $ficheConseil->getContenu(),
+                'fiche_description' => $ficheConseil->getDescription(),
+                'fiche_domaine' => $ficheConseil->getDomaine(),
+            )
+        );
+        $this->returnPDFResponseFromHTML($html);
+    }
+
 }
