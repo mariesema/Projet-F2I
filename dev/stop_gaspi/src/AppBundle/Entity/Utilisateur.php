@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_type_user_utilisateur", columns={"type_user"}), @ORM\Index(name="fk_ville_utilisateur", columns={"ville"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository.php")
  * @UniqueEntity(fields="mail", message="Email already taken")
- * @UniqueEntity(fields="login", message="Username already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  */
 class Utilisateur implements UserInterface, \Serializable
 {
@@ -32,10 +32,10 @@ class Utilisateur implements UserInterface, \Serializable
 
     /**
      * @var string
-     * @ORM\Column(name="login", type="string", length=255, unique=true)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      * @Assert\NotBlank()
      */
-    private $login;
+    private $username;
 
     /**
      * @Assert\NotBlank()
@@ -199,9 +199,9 @@ class Utilisateur implements UserInterface, \Serializable
      *
      * @return Utilisateur
      */
-    public function setUsername($login)
+    public function setUsername($username)
     {
-        $this->login = $login;
+        $this->username = $username;
 
         return $this;
     }
@@ -213,7 +213,7 @@ class Utilisateur implements UserInterface, \Serializable
      */
     public function getUsername()
     {
-        return $this->login;
+        return $this->username;
     }
 
     /**
@@ -530,7 +530,7 @@ class Utilisateur implements UserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->login,
+            $this->username,
             $this->password,
             // see section on salt below
             // $this->salt,
@@ -542,7 +542,7 @@ class Utilisateur implements UserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->login,
+            $this->username,
             $this->password,
             // see section on salt below
             // $this->salt

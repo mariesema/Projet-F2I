@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>FicheConseil list</h1>
-
-    <table>
+    <h1>Fiches conseil</h1>
+    <table class="table">
         <thead>
             <tr>
                 <th>Contenu</th>
@@ -29,10 +28,9 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
+    <!-- <ul>
         <li>
             <a href="{{ path('fiche_new') }}">Create a new entry</a>
         </li>
-    </ul>
+    </ul> -->
 {% endblock %}

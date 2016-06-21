@@ -1,0 +1,27 @@
+/*                        *
+ *                        *
+ * Surchage CSS StopGaspi *
+ *                        *
+ *                        */
+
+
+/* Colors & Backgrounds */
+.stop_green {
+    color: #548923 !important;
+}
+
+.modal-footer-center {
+    text-align:center !important;
+}
+
+
+
+/*                        *
+ *                        *
+ *        CSS RESET       *
+ *                        *
+ *                        */
+a {
+    outline: 0 !important;
+    text-decoration:none !important;
+}

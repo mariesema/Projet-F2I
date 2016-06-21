@@ -17,10 +17,6 @@ class FicheConseilController extends Controller
 {
 
     public function returnPDFResponseFromHTML($html){
-        //set_time_limit(30); uncomment this line according to your needs
-        // If you are not in a controller, retrieve of some way the service container and then retrieve it
-        //$pdf = $this->container->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-        //if you are in a controlller use :
         $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetAuthor('Stop Gaspi');
         $pdf->SetTitle(('Fiche conseil'));
@@ -156,11 +152,6 @@ class FicheConseilController extends Controller
      */
     public function downloadAction(Request $request, FicheConseil $ficheConseil, $id)
     {
-        // You can send the html as you want
-        //$html = '<h1>Plain HTML</h1>';
-        // but in this case we will render a symfony view !
-        // We are in a controller and we can use renderView function which retrieves the html from a view
-        // then we send that html to the user.
         $html = $this->renderView(
             'ficheconseil/pdf.html.twig', array(
                 'fiche_contenu' => $ficheConseil->getContenu(),

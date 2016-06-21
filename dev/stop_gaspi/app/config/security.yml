@@ -4,18 +4,11 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
 
-    #providers:
-    #    in_memory:
-    #        memory: ~
     providers:
-        #in_memory:
-        #    memory: ~
         our_db_provider:
             entity:
                 class: AppBundle:Utilisateur
                 property: username
-                # if you're using multiple entity managers
-                # manager_name: customer
 
     encoders:
         AppBundle\Entity\Utilisateur:
@@ -23,15 +16,40 @@ security:
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
-            anonymous: true
-            pattern:    ^/
-            http_basic: ~
+            pattern:    .*
             provider: our_db_provider
+            anonymous: ~
+            logout: true
             form_login:
-                provider: our_db_provider
-                login_path: login
-                check_path: login
+                # submit the login form here
+                check_path: /login
+                # the user is redirected here when they need to log in
+                login_path: /login
+                # field names for the username and password fields
+                username_parameter: _username
+                password_parameter: _password
+
+            #remember_me:
+            #    token_provider: name
+            #    secret: "%secret%"
+            #    name: remember_me_cookie
+            #    lifetime: 3600 # in seconds
+            #    path: /foo
+            #    domain: somedomain.foo
+            #    secure: false
+            #    httponly: true
+            #    always_remember_me: false
+            #    remember_me_parameter: _remember_me
+            logout:
+                path:   /logout
+                target: /login
+                #invalidate_session: false
+                #delete_cookies:
+                #    a: { path: null, domain: null }
+                #    b: { path: null, domain: null }
+                #handlers: [some.service.id, another.service.id]
+                #success_handler: some.service.id

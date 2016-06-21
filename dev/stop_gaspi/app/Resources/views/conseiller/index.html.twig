@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>rendez-vous avec un conseiller</h1>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ form_start(form) }}
+            <input type="hidden" name="is_filtered" value="1">
+        {{ form_end(form) }}
+
+        {% if filtered %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> Nom </th>
+                        <th> Prénom </th>
+                        <th> Email </th>
+                        <th> Ville </th>
+                        <th> Code Postal </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for conseiller in conseillersH %}
+                        <tr data-toggle="modal" data-target="#myModal{{ loop.index }}" style="cursor:pointer;">
+                            <td> {{ conseiller.nom }}</td>
+                            <td> {{ conseiller.prenom }}</td>
+                            <td> {{ conseiller.email }}</td>
+                            <td> {{ conseiller.ville.nom }}</td>
+                            <td> {{ conseiller.ville.cp }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <!-- Modal -->
+            {% for conseiller in conseillersH %}
+                <div id="myModal{{ loop.index }}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <form class="form" action="{{ path('rendezvous_new') }}" method="post">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title text-center">Prendre rendez-vous</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Informations conseiller passées en hidden -->
+                                    <input type="hidden" value="{{ conseiller.nom }}" name="c-nom">
+                                    <input type="hidden" value="{{ conseiller.prenom }}" name="c-prenom">
+                                    <input type="hidden" value="{{ conseiller.email }}" name="c-email">
+                                    <input type="hidden" value="{{ conseiller.ville.nom }}" name="c-ville-nom">
+                                    <input type="hidden" value="{{ conseiller.ville.cp }}" name="c-ville-cp">
+                                    <input type="hidden" value="{{ conseiller.ville.dpt }}" name="c-ville-dpt">
+                                    <p class="text-center">Prendre rendez-vous avec {{ conseiller.nom ~ ' ' ~ conseiller.prenom ~ ' le '}}</p>
+                                </div>
+                                <div class="modal-footer modal-footer-center">
+                                    <button type="submit" class="btn btn-success" data-dismiss="modal">Oui</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    {% else %}
+        <p>Si vous voulez prendre rendez-vous avec un conseiller, veuillez vous <a href="{{ path('login')}}">connecter</a></p>
+    {% endif %}
+
+    <script type="text/javascript">
+        function accept() {
+            location.href = "{{ path('rendezvous_new') }}";
+        }
+    </script>
+{% endblock %}

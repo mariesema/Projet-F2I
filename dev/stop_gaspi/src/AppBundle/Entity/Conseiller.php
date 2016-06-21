@@ -17,7 +17,7 @@ class Conseiller
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Utilisateur")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Utilisateur", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id", referencedColumnName="id")
      * })
@@ -117,4 +117,5 @@ class Conseiller
     {
         return $this->disponibilites;
     }
+
 }
